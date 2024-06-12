@@ -12,21 +12,21 @@ def db_session():
 
 def test_func_noindex(db_session):
     con = db_session
-    pattern = 'Java%'
+    pattern = 'Take%'
     rows = select_like(con, pattern)
-    assert len(rows) == 401559
+    assert len(rows) == 2065
     
 def test_func_index(db_session):
     con = db_session
-    pattern = 'Java%'
+    pattern = 'Take%'
     create_index(con)
     rows = select_like(con, pattern)
-    assert len(rows) == 401559
+    assert len(rows) == 2065
     drop_index(con)
 
 def test_functional_compare(db_session):
     con = db_session
-    pattern = 'Java%'
+    pattern = 'Take%'
     no_index_rows = select_like(con, pattern)
     create_index(con)
     index_rows = select_like(con, pattern)
